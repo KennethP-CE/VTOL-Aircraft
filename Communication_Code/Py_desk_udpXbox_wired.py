@@ -13,7 +13,7 @@ def connectController():
             time.sleep(1)
         else:
             print("Controller detected")
-            global Xbox 
+            global Xbox
             Xbox = pygame.joystick.Joystick(0)
             Xbox.init()
             print("Controller connected")

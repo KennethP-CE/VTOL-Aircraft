@@ -7,13 +7,15 @@ def connectController():
     pygame.init()
     pygame.joystick.init()
     while True:
+        pygame.event.pump()
         count = pygame.joystick.get_count()
+
         if count == 0:
             print("No controllers detected")
             time.sleep(1)
         else:
             print("Controller detected")
-            global Xbox 
+            global Xbox
             Xbox = pygame.joystick.Joystick(0)
             Xbox.init()
             print("Controller connected")
@@ -23,7 +25,7 @@ def connectSocket():
     global pi
     print("Connecting to pi")
     pi = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    pi.connect(("192.168.1.38", 5000))
+    pi.connect(("192.168.1.4", 5000))
     print("Connected to pi")
 
 def deadzone(axis):
