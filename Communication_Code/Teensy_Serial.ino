@@ -1,6 +1,9 @@
 #include <string>
 #include <Servo.h>
 
+Servo myServo;
+const int servoPin = 23;
+
 void setup() {
   myServo.attach(servoPin);
   Serial.begin(115200);
