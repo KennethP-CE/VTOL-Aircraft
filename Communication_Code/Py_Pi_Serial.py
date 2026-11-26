@@ -6,16 +6,13 @@ PORT = '/dev/ttyACM0'
 BAUD = 115200
 
 try:
-    # Open the serial connection
     ser = serial.Serial(PORT, BAUD, timeout=1)
-    time.sleep(2) # Allow time for Teensy to reset upon connection
-    
-    # Send a message to the Teensy
+    time.sleep(2)
+
     message = "Hello from Raspberry Pi!\n"
     ser.write(message.encode('utf-8'))
     print(f"Sent: {message.strip()}")
-    
-    # Read response back from the Teensy
+
     response = ser.readline().decode('utf-8').strip()
     if response:
         print(f"Received from Teensy: {response}")
