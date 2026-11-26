@@ -1,16 +1,20 @@
+#include <string>
+#include <Servo.h>
+
 void setup() {
-  Serial.begin(115200); // Initialize USB Serial communication
-  while (!Serial && millis() < 4000); // Wait for serial port to open
+  myServo.attach(servoPin);
+  Serial.begin(115200);
+  while (!Serial && millis() < 4000);
 }
 
 void loop() {
-  // Check if data has been sent from the Raspberry Pi
   if (Serial.available() > 0) {
     String incomingString = Serial.readStringUntil('\n');
-    incomingString.trim(); // Remove trailing newline/spaces
-    
-    // Echo back to the Pi
+    incomingString.trim();
+    int num = std::stoi(incomingString);
     Serial.print("Teensy received: ");
     Serial.println(incomingString);
+    myServo.write(num);
+    delay(15)
   }
 }
